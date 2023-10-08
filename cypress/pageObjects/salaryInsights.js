@@ -4,5 +4,6 @@ export const SALARY_INSIGHTS_PAGE = {
   country: `input[placeholder="Select a country"]`,
   submit: `button[type="submit"]`,
   salary_table: `div[data-qa="salary-table"]`,
-  form: `form[data-form-type="other"]`,
+  first_option_role: ".css-1t8qvcn",
+  first_option_country: "#mui-4-option-0",
 };
