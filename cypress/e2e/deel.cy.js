@@ -5,24 +5,44 @@ describe("Exercise 3", () => {
     cy.fixture("jobData.json").then(function (data) {
       this.data = data;
     });
+    // Visit Salary Insights page
     cy.visit("https://growth.deel.training/dev/salary-insights");
+    // Check if header is visible
     cy.get(insights.insights_header).first().should("be.visible");
   });
   it("Test Salary Insights for Accountant", function () {
-    this.data.jobRole.forEach((job_role) => {
-      this.data.jobCountry.forEach((job_country) => {
-        cy.get(insights.role).should("be.visible").type(job_role);
-        cy.get(insights.first_option_role).should("be.visible").click();
+    cy.get(insights.role).should("be.visible").type(this.data.jobRole[0]);
+    cy.get(insights.first_option_role).should("be.visible").click();
 
-        cy.get(insights.country).should("be.visible").type(job_country);
-        cy.get(insights.first_option_country).should("be.visible").click();
+    cy.get(insights.country).should("be.visible").type(this.data.jobCountry[0]);
+    cy.get(insights.first_option_country).should("be.visible").click();
 
-        cy.get(insights.submit).should("be.visible").click();
+    cy.get(insights.submit).should("be.visible").click();
 
-        cy.get(insights.salary_table).should("be.visible");
-      });
-    });
-    // cy.get(insights.role).should("be.visible").type("Accountant");
-    // cy.get(insights.first_option).should("be.visible").click();
+    cy.get(insights.salary_table).should("be.visible");
+  });
+
+  it("Test Salary Insights for QA Engineer", function () {
+    cy.get(insights.role).should("be.visible").type(this.data.jobRole[1]);
+    cy.get(insights.first_option_role).should("be.visible").click();
+
+    cy.get(insights.country).should("be.visible").type(this.data.jobCountry[1]);
+    cy.get(insights.first_option_country).should("be.visible").click();
+
+    cy.get(insights.submit).should("be.visible").click();
+
+    cy.get(insights.salary_table).should("be.visible");
+  });
+
+  it("Test Salary Insights for Software Engineer", function () {
+    cy.get(insights.role).should("be.visible").type(this.data.jobRole[2]);
+    cy.get(insights.first_option_role).should("be.visible").click();
+
+    cy.get(insights.country).should("be.visible").type(this.data.jobCountry[2]);
+    cy.get(insights.first_option_country).should("be.visible").click();
+
+    cy.get(insights.submit).should("be.visible").click();
+
+    cy.get(insights.salary_table).should("be.visible");
   });
 });
